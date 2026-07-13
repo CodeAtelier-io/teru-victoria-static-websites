@@ -1,0 +1,47 @@
+{
+  "brand": "teru",
+  "name": "Teru Credit",
+  "legalName": "Teru Credit Ltd.",
+  "defaultLang": "bg",
+  "theme": {
+    "accent": "#1f8a70",
+    "accentDark": "#166a56",
+    "ink": "#1e2430",
+    "muted": "#5f6672",
+    "surface": "#f2f7f5"
+  },
+  "contact": {
+    "address": "1000 Sofia, Bulgaria, 25 Vitosha blvd., 3rd floor",
+    "phone": "0700 20 222",
+    "email": "office@terucredit.bg"
+  },
+  "features": {
+    "showMission": true,
+    "showCompetencies": true,
+    "showProducts": true,
+    "showKeyFigures": true,
+    "showNews": true
+  },
+  "keyFigures": [
+    { "value": "120 000+", "labelKey": "figures.loans" },
+    { "value": "48 000+", "labelKey": "figures.clients" },
+    { "value": "6 200+", "labelKey": "figures.applications" },
+    { "value": "30+", "labelKey": "figures.offices" }
+  ],
+  "products": [
+    {
+      "nameKey": "products.items.p1.name",
+      "descKey": "products.items.p1.desc",
+      "image": "images/teru/product-online.svg"
+    },
+    {
+      "nameKey": "products.items.p2.name",
+      "descKey": "products.items.p2.desc",
+      "image": "images/teru/product-instalment.svg"
+    }
+  ],
+  "images": {
+    "hero": "images/teru/hero.svg",
+    "about": "images/teru/about.svg"
+  }
+}

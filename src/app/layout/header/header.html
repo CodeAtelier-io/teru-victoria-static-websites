@@ -1,0 +1,40 @@
+<header class="site-header" [class.site-header--scrolled]="scrolled()">
+  <div class="container site-header__inner">
+    <a class="brand" href="#top" (click)="closeMenu()">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">{{ config.brand.name }}</span>
+    </a>
+
+    <nav class="nav" [class.nav--open]="menuOpen()" aria-label="Primary">
+      @for (item of navItems; track item.fragment) {
+        <a class="nav__link" [href]="'#' + item.fragment" (click)="closeMenu()">
+          {{ i18n.t(item.labelKey) }}
+        </a>
+      }
+
+      <div class="nav__lang">
+        @for (lang of i18n.available; track lang) {
+          <button
+            type="button"
+            class="lang-btn"
+            [class.lang-btn--active]="i18n.lang() === lang"
+            (click)="switchLang(lang)"
+          >
+            {{ lang.toUpperCase() }}
+          </button>
+        }
+      </div>
+    </nav>
+
+    <button
+      type="button"
+      class="burger"
+      [class.burger--open]="menuOpen()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-label="Toggle menu"
+      (click)="toggleMenu()"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>

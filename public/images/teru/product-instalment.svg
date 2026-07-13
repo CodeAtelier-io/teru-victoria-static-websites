@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Teru Credit">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f8a70"/>
+      <stop offset="1" stop-color="#166a56"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#g)"/>
+  <circle cx="524.8" cy="72" r="115.2" fill="#ffffff" opacity="0.10"/>
+  <circle cx="115.19999999999999" cy="309.6" r="86.39999999999999" fill="#000000" opacity="0.08"/>
+  <rect x="51.2" y="223.2" width="320" height="10" rx="5" fill="#ffffff" opacity="0.35"/>
+  <rect x="51.2" y="244.8" width="217.60000000000002" height="10" rx="5" fill="#ffffff" opacity="0.22"/>
+  <text x="51.2" y="180" fill="#ffffff" font-family="'Open Sans',Arial,sans-serif" font-size="39.6" font-weight="800">Teru Credit</text>
+  <text x="51.2" y="226.8" fill="#ffffff" opacity="0.85" font-family="'Open Sans',Arial,sans-serif" font-size="21.599999999999998" font-weight="600">Instalments</text>
+</svg>

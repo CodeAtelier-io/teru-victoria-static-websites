@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "eyebrow": "Trusted lending since day one",
+    "title": "Reliable financing, whenever life needs it",
+    "lead": "{{brandName}} helps people and small businesses move forward with fast, transparent loans and a genuinely personal approach."
+  },
+  "products": {
+    "items": {
+      "p1": {
+        "name": "Victoria Online",
+        "desc": "A short-term online loan with an application that takes minutes and a decision you can rely on the same day."
+      },
+      "p2": {
+        "name": "Victoria Instalments",
+        "desc": "Larger financing repaid in comfortable monthly instalments, tailored to your household budget."
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "nav": {
+    "about": "About us",
+    "mission": "Mission",
+    "competencies": "Competencies",
+    "products": "Products",
+    "figures": "Key figures",
+    "news": "News",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "eyebrow": "Modern & responsible lending",
+    "title": "Financial solutions built around real people",
+    "lead": "{{brandName}} is a non-bank financial institution providing fast, transparent and responsible lending to households and small businesses across Bulgaria.",
+    "ctaPrimary": "Explore products",
+    "ctaSecondary": "About the company"
+  },
+  "about": {
+    "eyebrow": "About us",
+    "title": "Why {{brandName}}?",
+    "p1": "{{brandName}} is a non-bank financial institution that provides a broad portfolio of financial services. We combine proprietary technology with a conservative approach to risk to deliver credit products that are simple, fair and accessible.",
+    "p2": "For years we have helped clients cover everyday and unexpected expenses with a fast application process, clear terms and a customer-first attitude — online and across our office network.",
+    "points": [
+      "Fully transparent terms with no hidden fees",
+      "Decisions in minutes through proprietary scoring",
+      "Responsible lending and financial education"
+    ]
+  },
+  "mission": {
+    "eyebrow": "Our mission",
+    "title": "Responsible finance, accessible to everyone",
+    "lead": "To become one of the systematically important non-banking financial institutions in Bulgaria — trusted for our transparency, our technology and our commitment to responsible lending."
+  },
+  "competencies": {
+    "eyebrow": "Our competencies",
+    "title": "What makes us different",
+    "lead": "Six strengths that let us serve clients responsibly at scale.",
+    "items": [
+      {
+        "title": "Teamwork",
+        "text": "A dedicated team that puts clients first and works together to solve real financial needs."
+      },
+      {
+        "title": "Proprietary technology",
+        "text": "In-house platforms and scoring models that make lending fast, accurate and secure."
+      },
+      {
+        "title": "Borrowing conservatism",
+        "text": "A prudent, conservative approach to risk that protects both clients and the company."
+      },
+      {
+        "title": "Automation",
+        "text": "Automated processes that cut waiting time and keep the cost of credit fair."
+      },
+      {
+        "title": "Synergy",
+        "text": "Online and offline channels working together to reach clients wherever they are."
+      },
+      {
+        "title": "Digital expertise",
+        "text": "Deep digital know-how applied to every step of the customer journey."
+      }
+    ]
+  },
+  "products": {
+    "eyebrow": "Our products",
+    "title": "Credit that fits your life",
+    "lead": "Clear, flexible products designed for everyday needs and larger plans alike.",
+    "viewMore": "Learn more",
+    "items": {
+      "p1": {
+        "name": "Online loans",
+        "desc": "Apply in minutes and receive a decision the same day. Short-term financing with fully transparent terms."
+      },
+      "p2": {
+        "name": "Instalment loans",
+        "desc": "Larger amounts repaid in comfortable monthly instalments, with a schedule that fits your budget."
+      }
+    }
+  },
+  "figures": {
+    "eyebrow": "Key figures",
+    "title": "Trusted by our clients",
+    "loans": "Loans granted",
+    "clients": "Active clients",
+    "applications": "Monthly applications",
+    "offices": "Offices nationwide"
+  },
+  "news": {
+    "eyebrow": "News",
+    "title": "Latest updates",
+    "items": [
+      {
+        "date": "June 2026",
+        "title": "New office openings",
+        "excerpt": "We continue to expand our office network to bring our services closer to clients across the country."
+      },
+      {
+        "date": "April 2026",
+        "title": "Upgraded online application",
+        "excerpt": "A faster, simpler online application experience with instant decisions for returning clients."
+      },
+      {
+        "date": "February 2026",
+        "title": "Financial education partnership",
+        "excerpt": "A new initiative promoting responsible borrowing and everyday financial literacy."
+      }
+    ]
+  },
+  "contacts": {
+    "eyebrow": "Contacts",
+    "title": "Get in touch",
+    "lead": "Have a question about our products or your application? Our team is here to help.",
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "mapTitle": "Our location",
+    "form": {
+      "name": "Your name",
+      "email": "Your email",
+      "message": "Your message",
+      "send": "Send message",
+      "subject": "Website enquiry"
+    }
+  },
+  "footer": {
+    "tagline": "A non-bank financial institution providing responsible lending and financial services.",
+    "company": "Company",
+    "contactTitle": "Contact",
+    "rights": "All rights reserved.",
+    "disclaimer": "Lending is subject to approval and responsible-lending checks."
+  }
+}

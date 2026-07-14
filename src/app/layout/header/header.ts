@@ -1,6 +1,7 @@
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { ConfigService } from '../../core/config.service';
 import { I18nService } from '../../core/i18n.service';
+import { ThemeService } from '../../core/theme.service';
 import { Lang } from '../../core/brand-config.model';
 
 interface NavItem {
@@ -18,9 +19,11 @@ interface NavItem {
 export class Header {
   readonly config = inject(ConfigService);
   readonly i18n = inject(I18nService);
+  readonly theme = inject(ThemeService);
 
   readonly scrolled = signal(false);
   readonly menuOpen = signal(false);
+  readonly progress = signal(0);
 
   get navItems(): NavItem[] {
     const f = this.config.brand.features;
@@ -38,6 +41,9 @@ export class Header {
   @HostListener('window:scroll')
   onScroll(): void {
     this.scrolled.set(window.scrollY > 8);
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    this.progress.set(max > 0 ? Math.min((doc.scrollTop / max) * 100, 100) : 0);
   }
 
   toggleMenu(): void {

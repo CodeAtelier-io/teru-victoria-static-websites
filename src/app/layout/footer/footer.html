@@ -1,7 +1,12 @@
 <footer class="site-footer">
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
-      <span class="brand__name">{{ config.brand.name }}</span>
+      <div class="site-footer__logo-row">
+        <span class="footer-logo">
+          <img [src]="config.brand.images.logo" [alt]="i18n.brandName()" />
+        </span>
+        <span class="brand__name">{{ i18n.brandName() }}</span>
+      </div>
       <p>{{ i18n.t('footer.tagline') }}</p>
     </div>
 

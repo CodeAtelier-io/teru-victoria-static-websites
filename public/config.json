@@ -4,11 +4,9 @@
   "legalName": "Victoria 111 Ltd.",
   "defaultLang": "bg",
   "theme": {
-    "accent": "#f07335",
-    "accentDark": "#d55e24",
-    "ink": "#23262b",
-    "muted": "#636569",
-    "surface": "#f7f5f2"
+    "accent": "#2f52cc",
+    "accent2": "#5673de",
+    "accentDark": "#233fa0"
   },
   "contact": {
     "address": "1407 Sofia, Bulgaria, 16 Srebarna str., 8th floor",
@@ -26,22 +24,23 @@
     { "value": "180 000+", "labelKey": "figures.loans" },
     { "value": "65 000+", "labelKey": "figures.clients" },
     { "value": "8 500+", "labelKey": "figures.applications" },
-    { "value": "40+", "labelKey": "figures.offices" }
+    { "value": "200+", "labelKey": "figures.offices" }
   ],
   "products": [
     {
       "nameKey": "products.items.p1.name",
       "descKey": "products.items.p1.desc",
-      "image": "images/victoria/product-online.svg"
+      "image": "images/victoria/product-online.jpg"
     },
     {
       "nameKey": "products.items.p2.name",
       "descKey": "products.items.p2.desc",
-      "image": "images/victoria/product-instalment.svg"
+      "image": "images/victoria/product-instalment.jpg"
     }
   ],
   "images": {
-    "hero": "images/victoria/hero.svg",
-    "about": "images/victoria/about.svg"
+    "logo": "images/victoria/logo.png",
+    "hero": "images/victoria/hero.jpg",
+    "about": "images/victoria/about.jpg"
   }
 }

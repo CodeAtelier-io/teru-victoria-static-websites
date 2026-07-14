@@ -8,16 +8,16 @@
 export type Lang = 'en' | 'bg';
 
 export interface BrandTheme {
-  /** Primary accent colour (buttons, links, highlights). */
+  /**
+   * Brand accent identity — the same in light and dark mode. Neutral colours
+   * (background, text, surfaces) are owned by the light/dark theme, not by the
+   * brand, so both brands share one consistent, accessible neutral scale.
+   */
   accent: string;
+  /** Secondary accent — paired with `accent` to build gradients. */
+  accent2: string;
   /** Darker accent for hover / active states. */
   accentDark: string;
-  /** Main heading / body text colour. */
-  ink: string;
-  /** Muted secondary text colour. */
-  muted: string;
-  /** Section alternating background. */
-  surface: string;
 }
 
 export interface BrandContact {
@@ -70,6 +70,8 @@ export interface BrandConfig {
   keyFigures: BrandKeyFigure[];
   products: BrandProduct[];
   images: {
+    /** Brand logo mark (also used as the favicon). */
+    logo: string;
     hero: string;
     about: string;
   };

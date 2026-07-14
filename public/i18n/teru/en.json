@@ -1,8 +1,13 @@
 {
+  "brand": {
+    "name": "Teru Credit"
+  },
   "hero": {
     "eyebrow": "Smart credit, made simple",
-    "title": "Fast, fair credit for everyday life",
-    "lead": "{{brandName}} delivers simple, transparent lending powered by technology — so you get the financing you need without the friction."
+    "titleLead": "Fast, fair credit for",
+    "titleAccent": "everyday life",
+    "lead": "{{brandName}} delivers simple, transparent lending powered by technology — so you get the financing you need without the friction.",
+    "trust": "Powering credit decisions for thousands of clients"
   },
   "products": {
     "items": {

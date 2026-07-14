@@ -1,8 +1,13 @@
 {
+  "brand": {
+    "name": "Victoria 111"
+  },
   "hero": {
     "eyebrow": "Trusted lending since day one",
-    "title": "Reliable financing, whenever life needs it",
-    "lead": "{{brandName}} helps people and small businesses move forward with fast, transparent loans and a genuinely personal approach."
+    "titleLead": "Reliable financing, whenever",
+    "titleAccent": "life needs it",
+    "lead": "{{brandName}} helps people and small businesses move forward with fast, transparent loans and a genuinely personal approach.",
+    "trust": "Chosen by thousands of households nationwide"
   },
   "products": {
     "items": {

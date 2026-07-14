@@ -43,6 +43,13 @@ export class I18nService {
     this._lang.set(lang);
     localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.lang = lang;
+    document.title = this.brandName();
+  }
+
+  /** The brand's display name in the active language (e.g. "Виктория 111"). */
+  brandName(): string {
+    const value = this.resolve(this.active(), 'brand.name');
+    return typeof value === 'string' ? value : this.config.brand.name;
   }
 
   /**
@@ -87,7 +94,7 @@ export class I18nService {
   }
 
   private interpolate(text: string, params?: Record<string, string>): string {
-    const merged: Record<string, string> = { brandName: this.config.brand.name, ...params };
+    const merged: Record<string, string> = { brandName: this.brandName(), ...params };
     return text.replace(/\{\{\s*(\w+)\s*\}\}/g, (_, name: string) =>
       name in merged ? merged[name] : `{{${name}}}`,
     );

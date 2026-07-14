@@ -10,14 +10,17 @@
   },
   "hero": {
     "eyebrow": "Modern & responsible lending",
-    "title": "Financial solutions built around real people",
+    "titleLead": "Financial solutions built around",
+    "titleAccent": "real people",
     "lead": "{{brandName}} is a non-bank financial institution providing fast, transparent and responsible lending to households and small businesses across Bulgaria.",
     "ctaPrimary": "Explore products",
-    "ctaSecondary": "About the company"
+    "ctaSecondary": "About the company",
+    "trust": "Trusted by thousands of clients across Bulgaria",
+    "chipApproved": "Approved in minutes"
   },
   "about": {
     "eyebrow": "About us",
-    "title": "Why {{brandName}}?",
+    "titleLead": "Why",
     "p1": "{{brandName}} is a non-bank financial institution that provides a broad portfolio of financial services. We combine proprietary technology with a conservative approach to risk to deliver credit products that are simple, fair and accessible.",
     "p2": "For years we have helped clients cover everyday and unexpected expenses with a fast application process, clear terms and a customer-first attitude — online and across our office network.",
     "points": [
@@ -89,6 +92,7 @@
   "news": {
     "eyebrow": "News",
     "title": "Latest updates",
+    "readMore": "Read more",
     "items": [
       {
         "date": "June 2026",
@@ -122,6 +126,18 @@
       "send": "Send message",
       "subject": "Website enquiry"
     }
+  },
+  "locations": {
+    "title": "Our office network",
+    "lead": "Over 200 offices across Bulgaria. Filter by city, street or office code and the map will zoom to the results.",
+    "city": "City",
+    "allCities": "All cities",
+    "street": "Street",
+    "streetPlaceholder": "e.g. Vitosha",
+    "office": "Office code",
+    "officePlaceholder": "e.g. SOF-014",
+    "reset": "Reset",
+    "showing": "Showing {{count}} of {{total}} offices"
   },
   "footer": {
     "tagline": "A non-bank financial institution providing responsible lending and financial services.",

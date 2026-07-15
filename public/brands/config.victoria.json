@@ -41,6 +41,7 @@
   "images": {
     "logo": "images/victoria/logo.png",
     "hero": "images/victoria/hero.jpg",
-    "about": "images/victoria/about.jpg"
+    "about": "images/victoria/about.jpg",
+    "showcase": "images/victoria/showcase.jpg"
   }
 }

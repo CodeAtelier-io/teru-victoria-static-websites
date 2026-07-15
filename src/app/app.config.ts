@@ -7,9 +7,9 @@ import {
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
-import { ConfigService } from './core/config.service';
-import { I18nService } from './core/i18n.service';
-import { ThemeService } from './core/theme.service';
+import { ConfigService } from './core/services/config.service';
+import { I18nService } from './core/services/i18n.service';
+import { ThemeService } from './core/services/theme.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [

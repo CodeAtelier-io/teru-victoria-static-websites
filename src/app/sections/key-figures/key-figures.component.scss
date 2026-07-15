@@ -1,0 +1,108 @@
+.figures {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse 90% 70% at 50% 0%, #0d1120, var(--color-night) 70%);
+  color: #fff;
+}
+.figures__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.figures__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.22;
+}
+.figures__orb--1 {
+  width: 360px;
+  height: 360px;
+  top: -120px;
+  left: 8%;
+  background: radial-gradient(circle, var(--color-accent), transparent 68%);
+  animation: float-slow 12s ease-in-out infinite;
+}
+.figures__orb--2 {
+  width: 340px;
+  height: 340px;
+  bottom: -140px;
+  right: 6%;
+  background: radial-gradient(circle, var(--color-accent-2), transparent 68%);
+  animation: float-slower 14s ease-in-out infinite;
+}
+.figures__head {
+  position: relative;
+  text-align: center;
+  margin-bottom: 64px;
+}
+.figures__title {
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+}
+.eyebrow--dark {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+.figures__title {
+  color: #fff;
+}
+.figures__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.figure {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 38px 20px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.09),
+    rgba(255, 255, 255, 0.03)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  will-change: transform;
+  transition:
+    background 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+}
+.figure:hover {
+  border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+  box-shadow:
+    0 30px 60px -24px color-mix(in srgb, var(--color-accent) 90%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.figure__value {
+  display: block;
+  font-size: clamp(1.85rem, 2.9vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  white-space: nowrap;
+  background: linear-gradient(
+    120deg,
+    #fff,
+    color-mix(in srgb, var(--color-accent-2) 40%, #fff)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.figure__label {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.66);
+}
+@media (max-width: 760px) {
+  .figures__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

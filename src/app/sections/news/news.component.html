@@ -1,0 +1,26 @@
+<section id="news" class="section section--surface">
+  <div class="container">
+    <div class="news__head" appReveal>
+      <span class="eyebrow">{{ i18n.t('news.eyebrow') }}</span>
+      <h2 class="section__title">{{ i18n.t('news.title') }}</h2>
+    </div>
+    <div class="news__grid">
+      @for (item of items(); track item.title; let i = $index) {
+        <article
+          class="news-card lux-edge"
+          appReveal
+          [revealDelay]="i * 100"
+          appTilt
+          [tiltGlare]="true"
+          [tiltMax]="5"
+          [tiltLift]="5"
+        >
+          <time class="news-card__date">{{ item.date }}</time>
+          <h3 class="news-card__title">{{ item.title }}</h3>
+          <p>{{ item.excerpt }}</p>
+          <span class="news-card__more">{{ i18n.t('news.readMore') }} →</span>
+        </article>
+      }
+    </div>
+  </div>
+</section>

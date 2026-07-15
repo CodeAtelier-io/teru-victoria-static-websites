@@ -1,0 +1,77 @@
+<section id="competencies" class="section section--surface comp">
+  <div class="container">
+    <div class="comp__head" appScroll="rise">
+      <span class="eyebrow">{{ i18n.t('competencies.eyebrow') }}</span>
+      <h2 class="section__title">{{ i18n.t('competencies.title') }}</h2>
+      <p class="section__lead">{{ i18n.t('competencies.lead') }}</p>
+    </div>
+  </div>
+
+  <div class="mq">
+    <div class="mq__track mq__track--l">
+      @for (item of cards(); track $index; let i = $index) {
+        <article class="mqcard">
+          <span class="mqcard__icon">
+            <ng-container [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ n: i % count }" />
+          </span>
+          <div class="mqcard__body">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+
+  <div class="mq">
+    <div class="mq__track mq__track--r">
+      @for (item of cards(); track $index; let i = $index) {
+        <article class="mqcard">
+          <span class="mqcard__icon">
+            <ng-container [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ n: (i + 3) % count }" />
+          </span>
+          <div class="mqcard__body">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<ng-template #icon let-n="n">
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    @switch (n) {
+      @case (0) {
+        <circle cx="9" cy="8" r="3" />
+        <path d="M2.5 20c0-3.3 3-5 6.5-5s6.5 1.7 6.5 5" />
+        <path d="M16 5.6a3 3 0 0 1 0 5.4" />
+        <path d="M18 14.6c2.4.6 3.8 2 3.8 5" />
+      }
+      @case (1) {
+        <rect x="5" y="5" width="14" height="14" rx="3" />
+        <rect x="9" y="9" width="6" height="6" rx="1" />
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
+      }
+      @case (2) {
+        <path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z" />
+        <path d="M9 12l2 2 4-4" />
+      }
+      @case (3) {
+        <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" />
+      }
+      @case (4) {
+        <circle cx="6" cy="12" r="2.5" />
+        <circle cx="18" cy="6" r="2.5" />
+        <circle cx="18" cy="18" r="2.5" />
+        <path d="M8.2 10.9l7.6-3.6M8.2 13.1l7.6 3.6" />
+      }
+      @case (5) {
+        <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z" />
+        <path d="M19 14l.8 2.1L22 17l-2.2.9L19 20l-.8-2.1L16 17l2.2-.9L19 14z" />
+      }
+    }
+  </svg>
+</ng-template>

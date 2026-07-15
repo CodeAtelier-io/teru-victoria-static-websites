@@ -1,0 +1,56 @@
+<section id="top" class="hero" appScene>
+  <div class="hero__bg" aria-hidden="true">
+    <img class="hero__img" [src]="config.brand.images.hero" alt="" appScroll="herozoom" />
+    <div class="hero__scrim"></div>
+    <span class="hero__glow"></span>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__content" appScroll="exit">
+      <h1 class="hero__title" appReveal>
+        {{ i18n.t('hero.titleLead') }}
+        <span class="grad-text">{{ i18n.t('hero.titleAccent') }}</span>
+      </h1>
+      <p class="hero__lead" appReveal [revealDelay]="140">{{ i18n.t('hero.lead') }}</p>
+      <div class="hero__actions" appReveal [revealDelay]="220">
+        <a class="btn btn--primary" href="#products">{{ i18n.t('hero.ctaPrimary') }}</a>
+        <a class="btn btn--on-dark" href="#about">{{ i18n.t('hero.ctaSecondary') }}</a>
+      </div>
+      <div class="hero__trust" appReveal [revealDelay]="300">
+        <div class="hero__avatars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <span>{{ i18n.t('hero.trust') }}</span>
+      </div>
+    </div>
+
+    <div class="hero__panel-wrap" appScroll="exit" [scrollSpeed]="1.25">
+      <span class="hero__chip hero__chip--a parallax-layer" style="--d: 40" aria-hidden="true">
+        <span class="hero__chip-dot"></span>{{ i18n.t('hero.chipApproved') }}
+      </span>
+      <span class="hero__chip hero__chip--b parallax-layer" style="--d: 58" aria-hidden="true">★★★★★</span>
+
+      <div class="hero__panel" appTilt [tiltGlare]="true" [tiltMax]="8">
+        <div class="hero__panel-head">
+          <span class="hero__panel-logo"><img [src]="config.brand.images.logo" [alt]="i18n.brandName()" /></span>
+          <span class="hero__panel-name">{{ i18n.brandName() }}</span>
+        </div>
+        <div class="hero__panel-figure">
+          <span class="hero__panel-num">{{ config.brand.keyFigures[0].value }}</span>
+          <span class="hero__panel-label">{{ i18n.t(config.brand.keyFigures[0].labelKey) }}</span>
+        </div>
+        <div class="hero__panel-bar"><span></span></div>
+        <div class="hero__panel-stats">
+          <div>
+            <strong>{{ config.brand.keyFigures[1].value }}</strong>
+            <span>{{ i18n.t(config.brand.keyFigures[1].labelKey) }}</span>
+          </div>
+          <div>
+            <strong>{{ config.brand.keyFigures[3].value }}</strong>
+            <span>{{ i18n.t(config.brand.keyFigures[3].labelKey) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

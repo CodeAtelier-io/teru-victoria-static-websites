@@ -127,6 +127,25 @@
       "subject": "Website enquiry"
     }
   },
+  "showcase": {
+    "eyebrow": "Why {{brandName}}",
+    "title": "Finance that moves at the speed of your life",
+    "lead": "A lender built on technology, transparency and real human support — online and across the country.",
+    "features": [
+      {
+        "title": "Decisions in minutes",
+        "text": "Apply online and get a clear answer fast, powered by our own scoring technology."
+      },
+      {
+        "title": "Transparent by design",
+        "text": "Simple terms and no hidden fees — you always know exactly what you pay."
+      },
+      {
+        "title": "Here for the long run",
+        "text": "Responsible lending and a support team that treats you like a person, not a number."
+      }
+    ]
+  },
   "locations": {
     "title": "Our office network",
     "lead": "Over 200 offices across Bulgaria. Filter by city, street or office code and the map will zoom to the results.",

@@ -41,6 +41,7 @@
   "images": {
     "logo": "images/teru/logo.png",
     "hero": "images/teru/hero.jpg",
-    "about": "images/teru/about.jpg"
+    "about": "images/teru/about.jpg",
+    "showcase": "images/teru/showcase.jpg"
   }
 }

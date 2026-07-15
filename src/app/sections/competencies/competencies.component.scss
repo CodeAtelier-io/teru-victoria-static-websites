@@ -1,0 +1,99 @@
+.comp__head {
+  max-width: 720px;
+  margin-bottom: clamp(36px, 5vw, 60px);
+}
+.mq {
+  overflow: hidden;
+  padding-block: 11px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.mq + .mq {
+  margin-top: 22px;
+}
+.mq__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.mq__track--l {
+  animation: mq-left 48s linear infinite;
+}
+.mq__track--r {
+  animation: mq-right 48s linear infinite;
+}
+.mq:hover .mq__track {
+  animation-play-state: paused;
+}
+@keyframes mq-left {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes mq-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.mqcard {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: none;
+  width: 360px;
+  margin-right: 22px;
+  padding: 24px 26px;
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+}
+.mqcard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 34%, var(--color-line));
+}
+.mqcard__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  flex: none;
+  border-radius: 15px;
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  transition:
+    transform 0.5s var(--ease-spring),
+    background 0.4s var(--ease),
+    color 0.4s var(--ease);
+}
+.mqcard:hover .mqcard__icon {
+  color: #fff;
+  background: var(--gradient-brand);
+  transform: rotate(-8deg) scale(1.08);
+}
+.mqcard__body h3 {
+  font-size: 1.16rem;
+  margin-bottom: 4px;
+}
+.mqcard__body p {
+  margin: 0;
+  font-size: 0.92rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (max-width: 560px) {
+  .mqcard {
+    width: 300px;
+  }
+}

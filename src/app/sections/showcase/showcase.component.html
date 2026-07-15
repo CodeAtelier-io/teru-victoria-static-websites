@@ -1,0 +1,51 @@
+<section id="showcase" class="stage">
+  <div class="stage__bg" aria-hidden="true">
+    <img [src]="config.brand.images.showcase" [alt]="" appScroll="parallax" [scrollSpeed]="0.6" />
+    <div class="stage__scrim"></div>
+    <span class="stage__glow"></span>
+  </div>
+
+  <div class="stage__head">
+    <span class="eyebrow eyebrow--dark" appScroll="rise">{{ i18n.t('showcase.eyebrow') }}</span>
+    <h2 class="stage__title" appScroll="rise">{{ i18n.t('showcase.title') }}</h2>
+    <p class="stage__lead" appScroll="rise">{{ i18n.t('showcase.lead') }}</p>
+    <a class="btn btn--light" href="#products" appScroll="rise">
+      {{ i18n.t('hero.ctaPrimary') }}
+    </a>
+  </div>
+
+  <div class="stage__cards" aria-hidden="true">
+    <div class="orb orb--0">
+      <div class="rvcard rvcard--front">
+        <span class="rvcard__chip"></span>
+        <span class="rvcard__label">CREDIT</span>
+        <span class="rvcard__brand">{{ i18n.brandName() }}</span>
+      </div>
+    </div>
+    <div class="orb orb--1">
+      <div class="rvcard rvcard--accent2">
+        <span class="rvcard__label">PREMIUM</span>
+        <span class="rvcard__brand">{{ i18n.brandName() }}</span>
+      </div>
+    </div>
+    <div class="orb orb--2">
+      <div class="rvcard rvcard--graphite">
+        <span class="rvcard__label">CREDIT</span>
+        <span class="rvcard__brand">{{ i18n.brandName() }}</span>
+      </div>
+    </div>
+    <div class="orb orb--3">
+      <div class="rvcard rvcard--accent2">
+        <span class="rvcard__label">PREMIUM</span>
+        <span class="rvcard__brand">{{ i18n.brandName() }}</span>
+      </div>
+    </div>
+    <div class="orb orb--4">
+      <div class="rvcard rvcard--front">
+        <span class="rvcard__chip"></span>
+        <span class="rvcard__label">CREDIT</span>
+        <span class="rvcard__brand">{{ i18n.brandName() }}</span>
+      </div>
+    </div>
+  </div>
+</section>

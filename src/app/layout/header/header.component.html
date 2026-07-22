@@ -1,4 +1,8 @@
-<header class="site-header" [class.site-header--scrolled]="scrolled()">
+<header
+  class="site-header"
+  [class.site-header--scrolled]="scrolled()"
+  [class.site-header--hidden]="hidden()"
+>
   <div class="container site-header__inner">
     <a class="brand" href="#top" (click)="closeMenu()">
       <span class="brand__logo">

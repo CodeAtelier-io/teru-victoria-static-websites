@@ -18,8 +18,11 @@
   inset: 0 0 auto 0;
   z-index: 100;
   height: var(--header-h);
-  animation: header-drop 0.6s var(--ease) both;
+  /* `backwards` (not `both`) so the filled end-state doesn't override the
+     auto-hide transform below once the entrance has played. */
+  animation: header-drop 0.6s var(--ease) backwards;
   transition:
+    transform 0.35s var(--ease),
     background 0.3s var(--ease),
     box-shadow 0.3s var(--ease),
     border-color 0.3s var(--ease),
@@ -36,15 +39,19 @@
 }
 
 /* Before scrolling, the header floats over the always-dark cinematic hero, so
-   force light text/controls for contrast (desktop nav only — the mobile menu
-   is its own panel). Once scrolled, the header gets a background and reverts to
-   the theme colours. */
+   force light text/controls for contrast. The brand mark sits in the top bar at
+   every width (mobile included), so it goes white regardless of viewport. The
+   nav controls are desktop-only here — on mobile they live in their own panel.
+   Once scrolled, the header gets a background and reverts to the theme colours. */
+.site-header:not(.site-header--scrolled) {
+  .brand,
+  .brand__name {
+    color: #fff;
+  }
+}
+
 @media (min-width: 961px) {
   .site-header:not(.site-header--scrolled) {
-    .brand,
-    .brand__name {
-      color: #fff;
-    }
     .nav__link {
       color: rgba(255, 255, 255, 0.88);
     }
@@ -264,6 +271,12 @@
 }
 
 @media (max-width: 960px) {
+  /* Auto-hide the header on scroll-down (mobile only); it slides back on
+     scroll-up. Desktop keeps a persistent header. */
+  .site-header--hidden {
+    transform: translateY(-100%);
+  }
+
   .burger {
     display: flex;
   }

@@ -5,6 +5,11 @@ import { RevealDirective } from '../../core/directives/reveal.directive';
 import { CountUpDirective } from '../../core/directives/count-up.directive';
 import { TiltDirective } from '../../core/directives/tilt.directive';
 
+/**
+ * Key-figures band: the brand's headline numbers on a dark, aurora-lit stage.
+ * Each figure counts up from zero as it scrolls into view (CountUpDirective) and
+ * lifts toward the pointer (TiltDirective).
+ */
 @Component({
   selector: 'app-key-figures',
   imports: [RevealDirective, CountUpDirective, TiltDirective],

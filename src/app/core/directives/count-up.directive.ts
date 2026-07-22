@@ -1,9 +1,10 @@
 import { Directive, ElementRef, OnDestroy, OnInit, inject, input } from '@angular/core';
 
 /**
- * Counts a numeric value up from zero the first time it scrolls into view,
- * preserving any non-digit prefix/suffix (e.g. "180 000+"). Digits are grouped
- * with spaces to match the source formatting.
+ * Counts a numeric value up from zero each time it scrolls into view (it resets
+ * while out of view and replays on re-entry), preserving any non-digit
+ * prefix/suffix (e.g. "180 000+"). Digits are grouped with spaces to match the
+ * source formatting.
  */
 @Directive({
   selector: '[appCountUp]',
@@ -45,9 +46,14 @@ export class CountUpDirective implements OnInit, OnDestroy {
 
     this.observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          this.observer?.disconnect();
-          this.animate(value, render);
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            this.animate(value, render);
+          } else {
+            // Reset while out of view so the count-up replays on re-entry.
+            cancelAnimationFrame(this.frame);
+            render(0);
+          }
         }
       },
       { threshold: 0.4 },
@@ -61,6 +67,7 @@ export class CountUpDirective implements OnInit, OnDestroy {
   }
 
   private animate(target: number, render: (n: number) => void): void {
+    cancelAnimationFrame(this.frame);
     const start = performance.now();
     const dur = this.duration();
     const tick = (now: number) => {

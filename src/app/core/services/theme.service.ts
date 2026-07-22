@@ -34,9 +34,11 @@ export class ThemeService {
     const root = document.documentElement;
 
     // Briefly enable colour transitions so the switch eases instead of snapping.
+    // Kept short (just past the 0.28s crossfade) so the transition override
+    // doesn't linger over hover/other interactions.
     if (animate) {
       root.classList.add('theme-anim');
-      window.setTimeout(() => root.classList.remove('theme-anim'), 750);
+      window.setTimeout(() => root.classList.remove('theme-anim'), 360);
     }
 
     root.setAttribute('data-theme', theme);

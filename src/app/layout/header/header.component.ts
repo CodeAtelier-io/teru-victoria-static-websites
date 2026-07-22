@@ -23,7 +23,11 @@ export class HeaderComponent {
 
   readonly scrolled = signal(false);
   readonly menuOpen = signal(false);
+  /** True while the header is slid out of view (auto-hide on scroll down). */
+  readonly hidden = signal(false);
   readonly progress = signal(0);
+
+  private lastScrollY = 0;
 
   get navItems(): NavItem[] {
     const f = this.config.brand.features;
@@ -40,14 +44,30 @@ export class HeaderComponent {
 
   @HostListener('window:scroll')
   onScroll(): void {
-    this.scrolled.set(window.scrollY > 8);
+    const y = window.scrollY;
+    this.scrolled.set(y > 8);
+
     const doc = document.documentElement;
     const max = doc.scrollHeight - doc.clientHeight;
     this.progress.set(max > 0 ? Math.min((doc.scrollTop / max) * 100, 100) : 0);
+
+    // Auto-hide: slide the header away when scrolling down past the hero, and
+    // bring it straight back on any upward scroll. Always shown near the top or
+    // while the mobile menu is open. (Only actually hides on mobile — see SCSS.)
+    const delta = y - this.lastScrollY;
+    if (this.menuOpen() || y < 140) {
+      this.hidden.set(false);
+    } else if (delta > 4) {
+      this.hidden.set(true);
+    } else if (delta < -4) {
+      this.hidden.set(false);
+    }
+    this.lastScrollY = y;
   }
 
   toggleMenu(): void {
     this.menuOpen.update((v) => !v);
+    if (this.menuOpen()) this.hidden.set(false);
   }
 
   closeMenu(): void {

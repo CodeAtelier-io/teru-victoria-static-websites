@@ -78,18 +78,17 @@
   @include dark-theme;
 }
 
-/* Ease the colour change when toggling instead of snapping. A gentle, longer
-   crossfade across colours, borders and shadows for a smooth theme switch. */
+/* Ease the colour change when toggling instead of snapping. Only the cheap
+   colour properties crossfade (background/text/border) — transitioning
+   box-shadow and fill on every element is what made the switch feel laggy. */
 .theme-anim,
 .theme-anim *,
 .theme-anim *::before,
 .theme-anim *::after {
   transition:
-    background-color 0.6s var(--ease-in-out),
-    border-color 0.6s var(--ease-in-out),
-    color 0.55s var(--ease-in-out),
-    fill 0.55s var(--ease-in-out),
-    box-shadow 0.6s var(--ease-in-out) !important;
+    background-color 0.28s var(--ease-in-out),
+    border-color 0.28s var(--ease-in-out),
+    color 0.28s var(--ease-in-out) !important;
 }
 
 * {
@@ -574,6 +573,16 @@ img {
 .sd--zoom > img {
   transform: scale(calc(1.18 - var(--rp) * 0.18));
   transform-origin: center;
+}
+
+/* On phones, the hero's cinematic scroll-exit (content flying up + fading) read
+   as the top of the page going bland/blank. Keep that content steady on small
+   screens — the effect stays on larger viewports. */
+@media (max-width: 700px) {
+  .sd--exit {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Cursor-parallax layer: drifts with the pointer by its own depth (--d),

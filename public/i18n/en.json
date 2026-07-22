@@ -37,7 +37,7 @@
   "competencies": {
     "eyebrow": "Our competencies",
     "title": "What makes us different",
-    "lead": "Six strengths that let us serve clients responsibly at scale.",
+    "lead": "The strengths that let us serve clients responsibly at scale.",
     "items": [
       {
         "title": "Teamwork",
@@ -48,16 +48,8 @@
         "text": "In-house platforms and scoring models that make lending fast, accurate and secure."
       },
       {
-        "title": "Borrowing conservatism",
-        "text": "A prudent, conservative approach to risk that protects both clients and the company."
-      },
-      {
         "title": "Automation",
         "text": "Automated processes that cut waiting time and keep the cost of credit fair."
-      },
-      {
-        "title": "Synergy",
-        "text": "Online and offline channels working together to reach clients wherever they are."
       },
       {
         "title": "Digital expertise",

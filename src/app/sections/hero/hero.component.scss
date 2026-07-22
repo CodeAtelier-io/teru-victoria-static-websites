@@ -112,6 +112,7 @@
   position: relative;
   justify-self: end;
   width: min(420px, 100%);
+  perspective: 1400px;
 }
 .hero__panel {
   position: relative;
@@ -125,6 +126,38 @@
   box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   overflow: hidden;
   will-change: transform;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  user-select: none;
+}
+/* Revolut-style entrance: the card turns to face you as the hero loads. */
+.hero__panel--enter {
+  animation: hero-card-in 1.2s var(--ease) 0.3s backwards;
+}
+/* Coin-style flip on click — a fast left-to-right spin around the vertical axis. */
+.hero__panel--flip {
+  animation: hero-flip 0.55s cubic-bezier(0.5, 0, 0.3, 1);
+}
+@keyframes hero-card-in {
+  0% {
+    opacity: 0;
+    transform: perspective(1400px) rotateY(42deg) translateX(40px) translateY(18px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1400px) rotateY(0) translateX(0) translateY(0) scale(1);
+  }
+}
+@keyframes hero-flip {
+  0% {
+    transform: perspective(1400px) rotateY(0deg) scale(1);
+  }
+  50% {
+    transform: perspective(1400px) rotateY(180deg) scale(0.94);
+  }
+  100% {
+    transform: perspective(1400px) rotateY(360deg) scale(1);
+  }
 }
 .hero__panel-head {
   display: flex;
@@ -202,41 +235,6 @@
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.66);
 }
-.hero__chip {
-  position: absolute;
-  z-index: 3;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 16px;
-  border-radius: 14px;
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: #fff;
-  background: rgba(20, 22, 34, 0.55);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: var(--shadow-md);
-  transition: transform 0.4s var(--ease);
-}
-.hero__chip--a {
-  top: -22px;
-  left: -30px;
-}
-.hero__chip--b {
-  bottom: 26px;
-  right: -26px;
-  letter-spacing: 2px;
-  color: #ffce54;
-}
-.hero__chip-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
-}
-
 @media (max-width: 900px) {
   .hero {
     min-height: auto;
@@ -251,11 +249,5 @@
     width: 100%;
     max-width: 420px;
     margin-inline: auto;
-  }
-  .hero__chip--a {
-    left: 6px;
-  }
-  .hero__chip--b {
-    right: 6px;
   }
 }

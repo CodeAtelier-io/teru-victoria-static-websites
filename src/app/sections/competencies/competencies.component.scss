@@ -2,98 +2,103 @@
   max-width: 720px;
   margin-bottom: clamp(36px, 5vw, 60px);
 }
-.mq {
-  overflow: hidden;
-  padding-block: 11px;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+
+.comp__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
-.mq + .mq {
-  margin-top: 22px;
-}
-.mq__track {
+
+.comp-card {
   display: flex;
-  width: max-content;
-  will-change: transform;
-}
-.mq__track--l {
-  animation: mq-left 48s linear infinite;
-}
-.mq__track--r {
-  animation: mq-right 48s linear infinite;
-}
-.mq:hover .mq__track {
-  animation-play-state: paused;
-}
-@keyframes mq-left {
-  to {
-    transform: translateX(-50%);
-  }
-}
-@keyframes mq-right {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-.mqcard {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex: none;
-  width: 360px;
-  margin-right: 22px;
-  padding: 24px 26px;
+  flex-direction: column;
+  padding: 14px 14px 6px;
   border-radius: var(--radius-lg);
   background: var(--color-white);
   border: 1px solid var(--color-line);
   box-shadow: var(--shadow-sm);
+  /* Includes opacity + filter so the appReveal fade/blur actually animate — the
+     card's own transition otherwise wins (encapsulation) and they'd snap. */
   transition:
-    transform 0.35s var(--ease),
-    box-shadow 0.35s var(--ease),
-    border-color 0.35s var(--ease);
+    transform 0.55s var(--ease),
+    box-shadow 0.45s var(--ease),
+    border-color 0.45s var(--ease),
+    opacity 0.7s var(--ease),
+    filter 0.7s var(--ease);
+  will-change: transform, opacity;
 }
-.mqcard:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-accent);
-  border-color: color-mix(in srgb, var(--color-accent) 34%, var(--color-line));
+
+.comp-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--color-accent) 24%, var(--color-line));
 }
-.mqcard__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  flex: none;
-  border-radius: 15px;
-  color: var(--color-accent);
-  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
-  transition:
-    transform 0.5s var(--ease-spring),
-    background 0.4s var(--ease),
-    color 0.4s var(--ease);
+
+/* Entrance: each card lifts and grows into place (rides the appReveal state). */
+.comp-card.reveal:not(.is-visible) {
+  transform: translateY(38px) scale(0.94);
 }
-.mqcard:hover .mqcard__icon {
-  color: #fff;
-  background: var(--gradient-brand);
-  transform: rotate(-8deg) scale(1.08);
+.comp-card.reveal:not(.is-visible) .comp-card__media img {
+  transform: scale(1.14);
 }
-.mqcard__body h3 {
-  font-size: 1.16rem;
-  margin-bottom: 4px;
-}
-.mqcard__body p {
-  margin: 0;
-  font-size: 0.92rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+
+.comp-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
   overflow: hidden;
+  margin-bottom: 20px;
+  background: var(--color-surface);
 }
+
+.comp-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+
+.comp-card:hover .comp-card__media img {
+  transform: scale(1.06);
+}
+
+/* Gentle brand tint that fades in on hover, tying the photos to the palette. */
+.comp-card__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 52%, color-mix(in srgb, var(--color-accent) 26%, transparent));
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+
+.comp-card:hover .comp-card__media::after {
+  opacity: 1;
+}
+
+.comp-card__title {
+  margin: 0 0 8px;
+  padding-inline: 10px;
+  font-size: 1.18rem;
+  letter-spacing: -0.02em;
+}
+
+.comp-card__text {
+  margin: 0;
+  padding: 0 10px 16px;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+@media (max-width: 980px) {
+  .comp__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 560px) {
-  .mqcard {
-    width: 300px;
+  .comp__grid {
+    grid-template-columns: 1fr;
   }
 }

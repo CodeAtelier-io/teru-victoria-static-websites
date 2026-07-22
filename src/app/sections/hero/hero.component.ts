@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ConfigService } from '../../core/services/config.service';
 import { I18nService } from '../../core/services/i18n.service';
 import { RevealDirective } from '../../core/directives/reveal.directive';
@@ -8,9 +8,9 @@ import { SceneDirective } from '../../core/directives/scene.directive';
 
 /**
  * Full-bleed cinematic hero: the brand image fills the screen and slowly zooms
- * as you scroll, with the headline overlaid and a frosted-glass "approval"
- * panel floating over it (parallaxes with the cursor). Always reads as a dark
- * immersive banner regardless of the app theme, fading into the page below.
+ * as you scroll, with the headline overlaid and a frosted-glass stats panel
+ * floating over it. Always reads as a dark immersive banner regardless of the
+ * app theme, fading into the page below.
  */
 @Component({
   selector: 'app-hero',
@@ -21,4 +21,20 @@ import { SceneDirective } from '../../core/directives/scene.directive';
 export class HeroComponent {
   readonly config = inject(ConfigService);
   readonly i18n = inject(I18nService);
+
+  /**
+   * Panel animation state: 'enter' plays the load-in spin, 'flip' plays the
+   * coin-style flip on click, null is at rest. Cleared on `animationend` so the
+   * flip can be replayed on every click.
+   */
+  readonly anim = signal<'enter' | 'flip' | null>('enter');
+
+  flip(): void {
+    if (this.anim() === 'flip') return;
+    this.anim.set('flip');
+  }
+
+  onAnimEnd(): void {
+    this.anim.set(null);
+  }
 }

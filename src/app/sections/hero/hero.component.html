@@ -25,12 +25,16 @@
     </div>
 
     <div class="hero__panel-wrap" appScroll="exit" [scrollSpeed]="1.25">
-      <span class="hero__chip hero__chip--a parallax-layer" style="--d: 40" aria-hidden="true">
-        <span class="hero__chip-dot"></span>{{ i18n.t('hero.chipApproved') }}
-      </span>
-      <span class="hero__chip hero__chip--b parallax-layer" style="--d: 58" aria-hidden="true">★★★★★</span>
-
-      <div class="hero__panel" appTilt [tiltGlare]="true" [tiltMax]="8">
+      <div
+        class="hero__panel"
+        [class.hero__panel--enter]="anim() === 'enter'"
+        [class.hero__panel--flip]="anim() === 'flip'"
+        (click)="flip()"
+        (animationend)="onAnimEnd()"
+        appTilt
+        [tiltGlare]="true"
+        [tiltMax]="8"
+      >
         <div class="hero__panel-head">
           <span class="hero__panel-logo"><img [src]="config.brand.images.logo" [alt]="i18n.brandName()" /></span>
           <span class="hero__panel-name">{{ i18n.brandName() }}</span>

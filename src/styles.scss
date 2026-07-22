@@ -1,0 +1,737 @@
+/* ============================================================================
+   Global design system
+   Brand accent colours are injected at runtime by ConfigService as CSS custom
+   properties on :root (--color-accent, --color-accent-2, --gradient-brand …).
+   The values below are fallbacks used before config.json loads.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Brand accents — overridden at runtime by ConfigService per brand. */
+  --color-accent: #2f52cc;
+  --color-accent-2: #5673de;
+  --color-accent-dark: #233fa0;
+  --gradient-brand: linear-gradient(120deg, #2f52cc, #5673de);
+
+  /* Neutrals — light theme (owned by the theme, not the brand). */
+  --color-bg: #ffffff;
+  --color-ink: #15161d;
+  --color-muted: #63677a;
+  --color-surface: #f7f7fb;
+  --color-line: rgba(15, 18, 34, 0.09);
+  --color-white: #ffffff; /* raised card surface (dark elevated in dark mode) */
+  --color-night: #0a0b16; /* always-dark feature bands (mission, figures, footer) */
+
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --container: 1200px;
+  --radius: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+  --header-h: 78px;
+
+  /* Layered soft shadows for depth. */
+  --shadow-sm: 0 1px 2px rgba(13, 15, 26, 0.06), 0 2px 8px rgba(13, 15, 26, 0.05);
+  --shadow-md: 0 8px 24px rgba(13, 15, 26, 0.08), 0 2px 6px rgba(13, 15, 26, 0.05);
+  --shadow-lg: 0 30px 60px -12px rgba(13, 15, 26, 0.18), 0 12px 24px -8px rgba(13, 15, 26, 0.1);
+  --shadow-xl: 0 50px 100px -24px rgba(13, 15, 26, 0.28), 0 20px 40px -18px rgba(13, 15, 26, 0.16);
+  --shadow-glow: 0 14px 30px -12px color-mix(in srgb, var(--color-accent) 34%, transparent);
+  /* Accent-tinted ambient halo for hovered cards — the "luxury" lift. */
+  --shadow-accent: 0 26px 60px -20px color-mix(in srgb, var(--color-accent) 55%, transparent),
+    0 10px 24px -14px color-mix(in srgb, var(--color-accent) 40%, transparent);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Dark-theme neutrals. Accents stay the same (brand identity). */
+@mixin dark-theme {
+  color-scheme: dark;
+  --color-bg: #0b0d14;
+  --color-ink: #eef0f6;
+  --color-muted: #9aa1b4;
+  --color-surface: #10131d;
+  --color-line: rgba(255, 255, 255, 0.11);
+  --color-white: #171a24; /* raised card surface */
+  --color-night: #070810;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 10px 26px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 50px 100px -24px rgba(0, 0, 0, 0.72);
+  --shadow-accent: 0 26px 60px -20px color-mix(in srgb, var(--color-accent) 60%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+
+/* Follow the OS setting when the user hasn't explicitly chosen. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include dark-theme;
+  }
+}
+
+/* Explicit user choice (set by ThemeService + inline boot script). */
+:root[data-theme='dark'] {
+  @include dark-theme;
+}
+
+/* Ease the colour change when toggling instead of snapping. Only the cheap
+   colour properties crossfade (background/text/border) — transitioning
+   box-shadow and fill on every element is what made the switch feel laggy. */
+.theme-anim,
+.theme-anim *,
+.theme-anim *::before,
+.theme-anim *::after {
+  transition:
+    background-color 0.28s var(--ease-in-out),
+    border-color 0.28s var(--ease-in-out),
+    color 0.28s var(--ease-in-out) !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  line-height: 1.65;
+  font-size: 16px;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.08;
+  margin: 0 0 0.5em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+}
+
+h1 {
+  font-size: clamp(2.4rem, 5.6vw, 4.2rem);
+}
+
+h2 {
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+}
+
+p {
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.18s var(--ease);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 28%, transparent);
+}
+
+/* ------------------------------------------------------------------ layout */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.section {
+  position: relative;
+  padding-block: clamp(72px, 9vw, 128px);
+  scroll-margin-top: var(--header-h);
+}
+
+.section--surface {
+  background: var(--color-surface);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 7px 14px 7px 12px;
+  border-radius: var(--radius-pill);
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 22%, transparent);
+  margin-bottom: 20px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gradient-brand);
+}
+
+.section__title {
+  max-width: 760px;
+  margin-bottom: 20px;
+}
+
+.section__lead {
+  max-width: 640px;
+  font-size: 1.12rem;
+  color: var(--color-muted);
+}
+
+/* Gradient text accent for headline fragments — slowly shifts for a living,
+   premium feel. */
+.grad-text {
+  background: linear-gradient(
+    120deg,
+    var(--color-accent),
+    var(--color-accent-2),
+    var(--color-accent)
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: grad-shift 7s var(--ease-in-out) infinite;
+}
+
+/* --------------------------------------------------------------- buttons */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  padding: 15px 28px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 0.2s var(--ease),
+    box-shadow 0.25s var(--ease),
+    background 0.2s var(--ease),
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
+
+.btn--primary {
+  background: var(--gradient-brand);
+  background-size: 160% 160%;
+  color: #fff;
+  box-shadow: var(--shadow-glow);
+  animation: grad-shift 6s var(--ease-in-out) infinite;
+}
+
+.btn--primary::after {
+  /* sheen sweep on hover */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease);
+}
+
+.btn--primary:hover {
+  color: #fff;
+  box-shadow: 0 18px 38px -12px color-mix(in srgb, var(--color-accent) 55%, transparent);
+}
+
+.btn--primary:hover::after {
+  transform: translateX(120%);
+}
+
+.btn--ghost {
+  background: var(--color-white);
+  color: var(--color-ink);
+  border-color: var(--color-line);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--ghost:hover {
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+
+.btn--on-dark {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+}
+
+.btn--on-dark:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+/* ----------------------------------------------------- scroll-reveal base */
+.reveal {
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity 0.85s var(--ease),
+    transform 0.85s var(--ease),
+    filter 0.85s var(--ease);
+  will-change: opacity, transform, filter;
+}
+
+.reveal--up {
+  transform: translateY(34px);
+}
+.reveal--left {
+  transform: translateX(-42px);
+}
+.reveal--right {
+  transform: translateX(42px);
+}
+.reveal--scale {
+  transform: scale(0.92);
+}
+.reveal--fade {
+  transform: none;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* -------------------------------------------------------------- keyframes */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -26px, 0) scale(1.05);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(18px, 22px, 0);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Slowly pans a background gradient (used by grad-text, primary buttons). */
+@keyframes grad-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Drifting aurora blobs for dark feature bands. */
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.5;
+  }
+  33% {
+    transform: translate3d(6%, -8%, 0) scale(1.15);
+    opacity: 0.75;
+  }
+  66% {
+    transform: translate3d(-6%, 6%, 0) scale(0.95);
+    opacity: 0.55;
+  }
+}
+
+/* Expanding ring pulse for accents. */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.6;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% 0;
+  }
+}
+
+/* ------------------------------------------------ interaction utilities */
+
+/* Cursor-following glare for tilt cards (see TiltDirective). The host must
+   clip its overflow. */
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0) 45%
+  );
+  mix-blend-mode: soft-light;
+}
+
+/* A gradient hairline border that lights up on hover. Add alongside a card. */
+.lux-edge {
+  position: relative;
+  isolation: isolate;
+}
+.lux-edge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    130deg,
+    color-mix(in srgb, var(--color-accent) 60%, transparent),
+    transparent 45%,
+    transparent 60%,
+    color-mix(in srgb, var(--color-accent-2) 55%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+  pointer-events: none;
+}
+.lux-edge:hover::after {
+  opacity: 1;
+}
+
+/* Diagonal light sweep across a surface on hover. */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.28) 48%,
+    transparent 62%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.8s var(--ease);
+}
+.shine:hover::before {
+  transform: translateX(130%);
+}
+
+/* ------------------------------------------- scroll-linked motion (ScrollEngine)
+   Elements carry --rp (reveal 0→1) and --pc (centred -1→0→1), updated as the
+   page scrolls. Defaults (rp:1 / pc:0) render everything at rest if JS is off
+   or motion is reduced. */
+.sd {
+  --rp: 1;
+  --pc: 0;
+  will-change: transform, opacity;
+}
+.sd--rise {
+  opacity: var(--rp);
+  transform: translate3d(0, calc((1 - var(--rp)) * 72px), 0);
+}
+.sd--rise-lg {
+  opacity: var(--rp);
+  transform: translate3d(0, calc((1 - var(--rp)) * 130px), 0)
+    scale(calc(0.92 + var(--rp) * 0.08));
+}
+.sd--left {
+  opacity: var(--rp);
+  transform: translate3d(calc((1 - var(--rp)) * -110px), 0, 0);
+}
+.sd--right {
+  opacity: var(--rp);
+  transform: translate3d(calc((1 - var(--rp)) * 110px), 0, 0);
+}
+.sd--fade {
+  opacity: var(--rp);
+}
+.sd--parallax {
+  transform: translate3d(0, calc(var(--pc) * var(--spd, 1) * -60px), 0);
+}
+/* Continuous horizontal drift: element slides left→right as the page scrolls
+   down (fades in as it enters). Great for editorial rows. */
+.sd--driftx {
+  opacity: var(--rp);
+  transform: translate3d(calc(var(--pc) * var(--spd, 1) * -90px), 0, 0);
+}
+/* Hero-style pan + zoom: pans up and scales as it moves through the viewport,
+   so the block "plays" an animation while you scroll past it. */
+.sd--zoompan {
+  transform: translate3d(0, calc(var(--pc) * var(--spd, 1) * -46px), 0)
+    scale(calc(1 - var(--pc) * 0.07));
+  transform-origin: center;
+}
+/* Exit: flies up, grows and fades out as you scroll the block off the top —
+   "everything disappears upward". */
+.sd--exit {
+  opacity: calc(1 + var(--pc) * 1.7);
+  transform: translate3d(0, calc(var(--pc) * var(--spd, 1) * 150px), 0)
+    scale(calc(1 - var(--pc) * 0.12));
+}
+/* Zoom that only ever scales UP from centre (never below 1), so a full-bleed
+   background image can zoom on scroll without ever revealing an edge. */
+.sd--herozoom {
+  transform: scale(calc(1 - min(0, var(--pc)) * 0.16));
+  transform-origin: center;
+}
+/* A media frame whose image zooms down to rest as the frame scrolls in. */
+.sd--zoom {
+  overflow: hidden;
+}
+.sd--zoom > img {
+  transform: scale(calc(1.18 - var(--rp) * 0.18));
+  transform-origin: center;
+}
+
+/* On phones, the hero's cinematic scroll-exit (content flying up + fading) read
+   as the top of the page going bland/blank. Keep that content steady on small
+   screens — the effect stays on larger viewports. */
+@media (max-width: 700px) {
+  .sd--exit {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Cursor-parallax layer: drifts with the pointer by its own depth (--d),
+   inside an [appScene] container (SceneDirective sets --mx / --my). */
+.parallax-layer {
+  transform: translate3d(
+    calc(var(--mx, 0) * var(--d, 20) * 1px),
+    calc(var(--my, 0) * var(--d, 20) * 1px),
+    0
+  );
+  transition: transform 0.4s var(--ease);
+  will-change: transform;
+}
+
+/* Cinematic perspective floor/ceiling grid for dark stages. */
+.cine-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  perspective: 340px;
+}
+.cine-grid::before,
+.cine-grid::after {
+  content: '';
+  position: absolute;
+  left: -50%;
+  width: 200%;
+  height: 60%;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-accent) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 45%, transparent) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.18;
+}
+.cine-grid::before {
+  bottom: 0;
+  transform: rotateX(72deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to top, #000, transparent 82%);
+  -webkit-mask-image: linear-gradient(to top, #000, transparent 82%);
+}
+.cine-grid::after {
+  top: 0;
+  transform: rotateX(-72deg);
+  transform-origin: top center;
+  mask-image: linear-gradient(to bottom, #000, transparent 82%);
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 82%);
+}
+
+/* --------------------------------------------------------- refinements */
+
+/* Themed, slim scrollbar. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-accent) 45%, transparent) transparent;
+}
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-accent) 55%, var(--color-line));
+  border: 3px solid var(--color-bg);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Barely-there film grain over the whole page for a tactile, premium finish. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================================
+   Leaflet office map — custom markers, clusters and popups.
+   These elements are created by Leaflet outside Angular's view encapsulation,
+   so they must be styled globally. Colours follow the active brand accent.
+   ========================================================================== */
+
+.office-pin__dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2.5px solid #fff;
+  box-shadow: 0 1px 4px rgba(10, 11, 22, 0.4);
+}
+
+.office-cluster {
+  background: transparent;
+}
+.office-cluster span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: #fff;
+  background: var(--gradient-brand);
+  border: 3px solid color-mix(in srgb, #fff 70%, transparent);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+
+.leaflet-container {
+  font: inherit;
+  background: var(--color-surface);
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+.leaflet-popup-content {
+  margin: 12px 16px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #14202e;
+}
+.leaflet-popup-content strong {
+  color: var(--color-accent);
+}
+.leaflet-bar a {
+  color: #14202e;
+}

@@ -1,0 +1,42 @@
+<section id="about" class="section">
+  <div class="container about__grid">
+    <div class="about__media" appReveal revealFrom="left">
+      <div class="about__frame" appTilt [tiltGlare]="true" [tiltLift]="8" appScroll="zoom">
+        <img [src]="config.brand.images.about" [alt]="i18n.t('about.title')" loading="lazy" />
+      </div>
+      <div class="about__logo">
+        <img [src]="config.brand.images.logo" [alt]="i18n.brandName()" />
+      </div>
+      <div class="about__badge">
+        <span class="about__badge-num">{{ config.brand.keyFigures[1].value }}</span>
+        <span class="about__badge-label">{{ i18n.t(config.brand.keyFigures[1].labelKey) }}</span>
+      </div>
+    </div>
+
+    <div class="about__content" appReveal revealFrom="right" [revealDelay]="120">
+      <h2 class="section__title">
+        {{ i18n.t('about.titleLead') }} <span class="grad-text">{{ i18n.brandName() }}</span>?
+      </h2>
+      <p>{{ i18n.t('about.p1') }}</p>
+      <p>{{ i18n.t('about.p2') }}</p>
+      <ul class="about__list">
+        @for (item of points(); track item) {
+          <li>
+            <span class="about__check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none">
+                <path
+                  d="M5 12.5l4.5 4.5L19 7"
+                  stroke="currentColor"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            {{ item }}
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

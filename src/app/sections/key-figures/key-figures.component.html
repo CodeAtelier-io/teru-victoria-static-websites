@@ -1,0 +1,27 @@
+<section id="figures" class="section figures">
+  <div class="figures__bg" aria-hidden="true">
+    <span class="figures__orb figures__orb--1"></span>
+    <span class="figures__orb figures__orb--2"></span>
+    <div class="cine-grid"></div>
+  </div>
+  <div class="container">
+    <div class="figures__head" appReveal>
+      <h2 class="figures__title">{{ i18n.t('figures.title') }}</h2>
+    </div>
+    <div class="figures__grid">
+      @for (figure of config.brand.keyFigures; track figure.labelKey; let i = $index) {
+        <div
+          class="figure lux-edge"
+          appReveal
+          [revealDelay]="i * 90"
+          appTilt
+          [tiltGlare]="true"
+          [tiltLift]="4"
+        >
+          <span class="figure__value" [appCountUp]="figure.value"></span>
+          <span class="figure__label">{{ i18n.t(figure.labelKey) }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

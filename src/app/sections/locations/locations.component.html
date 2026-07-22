@@ -1,0 +1,43 @@
+<div class="locations">
+  <div class="locations__bar" role="search">
+    <label class="locations__field">
+      <span>{{ i18n.t('locations.city') }}</span>
+      <select [ngModel]="city()" (ngModelChange)="city.set($event)">
+        <option value="">{{ i18n.t('locations.allCities') }}</option>
+        @for (c of cities; track c) {
+          <option [value]="c">{{ c }}</option>
+        }
+      </select>
+    </label>
+
+    <label class="locations__field">
+      <span>{{ i18n.t('locations.street') }}</span>
+      <input
+        type="text"
+        [ngModel]="street()"
+        (ngModelChange)="street.set($event)"
+        [placeholder]="i18n.t('locations.streetPlaceholder')"
+      />
+    </label>
+
+    <label class="locations__field">
+      <span>{{ i18n.t('locations.office') }}</span>
+      <input
+        type="text"
+        [ngModel]="office()"
+        (ngModelChange)="office.set($event)"
+        [placeholder]="i18n.t('locations.officePlaceholder')"
+      />
+    </label>
+
+    <button type="button" class="locations__reset" (click)="reset()" [disabled]="!hasFilter()">
+      {{ i18n.t('locations.reset') }}
+    </button>
+
+    <span class="locations__count">
+      {{ i18n.t('locations.showing', { count: filtered().length + '', total: total + '' }) }}
+    </span>
+  </div>
+
+  <div #mapEl class="locations__map"></div>
+</div>

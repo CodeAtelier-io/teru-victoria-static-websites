@@ -1,0 +1,39 @@
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <div class="site-footer__logo-row">
+        <span class="footer-logo">
+          <img [src]="config.brand.images.logo" [alt]="i18n.brandName()" />
+        </span>
+        <span class="brand__name">{{ i18n.brandName() }}</span>
+      </div>
+      <p>{{ i18n.t('footer.tagline') }}</p>
+    </div>
+
+    <div class="site-footer__col">
+      <h4>{{ i18n.t('footer.company') }}</h4>
+      <a href="#about">{{ i18n.t('nav.about') }}</a>
+      @if (config.brand.features.showMission) {
+        <a href="#mission">{{ i18n.t('nav.mission') }}</a>
+      }
+      @if (config.brand.features.showProducts) {
+        <a href="#products">{{ i18n.t('nav.products') }}</a>
+      }
+      <a href="#contacts">{{ i18n.t('nav.contacts') }}</a>
+    </div>
+
+    <div class="site-footer__col">
+      <h4>{{ i18n.t('footer.contactTitle') }}</h4>
+      <p>{{ config.brand.contact.address }}</p>
+      <a [href]="'tel:' + config.brand.contact.phone">{{ config.brand.contact.phone }}</a>
+      <a [href]="'mailto:' + config.brand.contact.email">{{ config.brand.contact.email }}</a>
+    </div>
+  </div>
+
+  <div class="site-footer__bar">
+    <div class="container site-footer__bar-inner">
+      <span>© {{ year }} {{ config.brand.legalName }}. {{ i18n.t('footer.rights') }}</span>
+      <span>{{ i18n.t('footer.disclaimer') }}</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,24 @@
+{
+  "brand": {
+    "name": "Teru Credit"
+  },
+  "hero": {
+    "eyebrow": "Smart credit, made simple",
+    "titleLead": "Fast, fair credit for",
+    "titleAccent": "everyday life",
+    "lead": "{{brandName}} delivers simple, transparent lending powered by technology — so you get the financing you need without the friction.",
+    "trust": "Powering credit decisions for thousands of clients"
+  },
+  "products": {
+    "items": {
+      "p1": {
+        "name": "Teru Flex",
+        "desc": "A flexible short-term loan you can apply for online in minutes, with clear terms and an instant decision."
+      },
+      "p2": {
+        "name": "Teru Plan",
+        "desc": "Higher amounts spread across manageable monthly instalments, with a repayment plan that suits you."
+      }
+    }
+  }
+}

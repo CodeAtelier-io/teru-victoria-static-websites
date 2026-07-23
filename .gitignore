@@ -1,13 +1,15 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Un-anchored so they apply inside each package (frontend/, backend/, …) rather
+# than only at the repo root.
+dist/
+tmp/
+out-tsc/
+bazel-out/
 
 # Node
-/node_modules
+node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -29,13 +31,15 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+# No leading/middle slash, so it matches at any depth (frontend/, backend/, …).
+# A middle slash like ".angular/cache" would anchor it to the repo root only.
+.angular/
 .sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
+connect.lock
+coverage/
+libpeerconnection.log
 testem.log
-/typings
+typings/
 __screenshots__/
 
 # System files

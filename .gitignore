@@ -45,3 +45,8 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Local env files (per-server: BRAND, port). Never commit — only *.example.
+.env
+.env.*
+!.env.*.example

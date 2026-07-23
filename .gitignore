@@ -31,7 +31,9 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-.angular/cache
+# No leading/middle slash, so it matches at any depth (frontend/, backend/, …).
+# A middle slash like ".angular/cache" would anchor it to the repo root only.
+.angular/
 .sass-cache/
 connect.lock
 coverage/

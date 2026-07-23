@@ -26,13 +26,11 @@ RUN apk add --no-cache gettext
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY docker/30-runtime-config.sh /docker-entrypoint.d/30-runtime-config.sh
-RUN chmod +x /docker-entrypoint.d/30-runtime-config.sh
 
 # The active brand at runtime. Defaults to the brand baked at build time; set
 # `-e BRAND=teru` (or victoria) to switch the served brand without rebuilding.
 ARG BRAND=victoria
-ENV BRAND=${BRAND}
+ENV BRAND=${BRANsD}
 
 COPY --from=build /app/dist/${BRAND}/browser/ /usr/share/nginx/html/
 

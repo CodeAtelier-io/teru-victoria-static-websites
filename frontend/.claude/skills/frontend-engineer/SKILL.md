@@ -68,7 +68,8 @@ Angular expectations:
 - replace manual Subscription + ngOnDestroy with takeUntilDestroyed() when an explicit subscribe() is still the right call
 - put catchError on the inner (per-request) pipe, not the outer stream; on the outer pipe an error terminates the stream permanently and the feature silently stops updating
 - use effect only for true side effects (DOM, storage, logging), never to derive state
-- OnPush is not a flag you flip on its own: a component that still subscribes into a plain property stops repainting with no error, just stale UI, so migrate its state to signals first
+- from Angular 22 on OnPush is the default: new components are born OnPush (the schematic omits the property; the old Default was renamed Eager and deprecated), so never set a plain property from a subscribe() in one, use a signal() or the async pipe
+- legacy components carrying an explicit Eager are the mirror case: migrate their state to signals before removing that line; either direction fails silently with no error, just stale UI, and no build catches it
 - keep templates readable
 - separate presentation from orchestration where possible
 

@@ -1,0 +1,31 @@
+{
+  "brand": "${BRAND}",
+  "name": "${NAME}",
+  "legalName": "${LEGAL_NAME}",
+  "defaultLang": "${DEFAULT_LANG}",
+  "theme": {
+    "accent": "${THEME_ACCENT}",
+    "accent2": "${THEME_ACCENT2}",
+    "accentDark": "${THEME_ACCENT_DARK}"
+  },
+  "contact": {
+    "address": "${CONTACT_ADDRESS}",
+    "phone": "${CONTACT_PHONE}",
+    "email": "${CONTACT_EMAIL}"
+  },
+  "features": {
+    "showMission": ${FEATURE_SHOW_MISSION},
+    "showCompetencies": ${FEATURE_SHOW_COMPETENCIES},
+    "showProducts": ${FEATURE_SHOW_PRODUCTS},
+    "showKeyFigures": ${FEATURE_SHOW_KEY_FIGURES},
+    "showNews": ${FEATURE_SHOW_NEWS}
+  },
+  "keyFigures": ${KEY_FIGURES_JSON},
+  "products": ${PRODUCTS_JSON},
+  "images": {
+    "logo": "${IMAGES_LOGO}",
+    "hero": "${IMAGES_HERO}",
+    "about": "${IMAGES_ABOUT}",
+    "showcase": "${IMAGES_SHOWCASE}"
+  }
+}

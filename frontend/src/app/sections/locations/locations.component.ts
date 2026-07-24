@@ -10,7 +10,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import * as L from 'leaflet';
+import L from 'leaflet';
 import 'leaflet.markercluster';
 import { I18nService } from '../../core/services/i18n.service';
 import { Theme, ThemeService } from '../../core/services/theme.service';
